@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class AdressBookUserDay37  {
+public class AdressBookUserDay37 {
 
 	ArrayList<Contactsuser> contactofuser = new ArrayList<>();
 	Scanner sc = new Scanner(System.in);
@@ -14,6 +14,16 @@ public class AdressBookUserDay37  {
 	void addContact() {
 		noOfEntery = sc.nextInt();
 		for (int i = 0; i < noOfEntery; i++) {
+
+			if (contactofuser != null) {
+				// STREAM
+				// looking if there is some of same name
+				if (contactofuser.stream().anyMatch(n -> n.getFirstName().equals(userFirstName))) {
+					System.err.println("Person is there try with other name !");
+					return;
+				}
+			}
+
 			System.out.println("Your First Name ");
 			userFirstName = sc.next();
 			System.out.println("Your Last Name");
@@ -36,7 +46,7 @@ public class AdressBookUserDay37  {
 
 		for (int i = 0; i < noOfEntery; i++) {
 			userData = contactofuser.get(i);
-			System.out.println(userData.userFirstName + "  " + userData.userLastName + " " + userData.address + " "
+			System.out.println(Contactsuser.userFirstName + " " + userData.userLastName + " " + userData.address + " "
 					+ userData.city + " " + userData.state + " " + userData.mailId + " " + userData.pinCode + " "
 					+ userData.phoneNum);
 		}
@@ -48,7 +58,7 @@ public class AdressBookUserDay37  {
 		int counter = 0;
 		for (int i = 0; i < contactofuser.size(); i++) {
 			userData = contactofuser.get(i);
-			if (userFirstName.equals(userData.userFirstName)) {
+			if (userFirstName.equals(Contactsuser.userFirstName)) {
 				System.out.println();
 				System.out.println("Do u want to edit entire contact details? yes or no");
 				String ch = sc.next();
