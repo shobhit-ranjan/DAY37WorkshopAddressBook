@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class userDatatoDB {
-	
+
 	public static void insertContact() {
 		System.out.println("Inserting a new contact to adressbook table");
 		Connection conn = AdressBookMain.getsqlConnection();
@@ -41,9 +41,39 @@ public class userDatatoDB {
 		}
 
 	}
+
+	public static void updateContactNameOfAdressbook() {
+		System.out.println("Updating address of ABD ");
+		Connection conn = AdressBookMain.getsqlConnection();
+		if (conn != null) {
+			String updateEmpPayroll = "UPDATE addressbookday37 SET address = ? WHERE address ='A 401'";
+			try {
+				PreparedStatement preparedStatement = conn.prepareStatement(updateEmpPayroll);
+				preparedStatement.setString(1, "ZZZZ");
+				int rowUpdated = preparedStatement.executeUpdate();
+				if (rowUpdated > 0) {
+					System.out.println("Data is Updated");
+				}
+			} catch (SQLException e) {
+
+				e.printStackTrace();
+			} finally {
+				if (conn != null) {
+					try {
+						conn.close();
+					} catch (SQLException sqlException) {
+						System.out.println(sqlException.getMessage());
+
+					}
+				}
+			}
+		}
+
+	}
+
 	public static void readAdressbook() {
 		System.out.println("Displaying all data of adressBook table");
-	  Connection conn = AdressBookMain.getsqlConnection();
+		Connection conn = AdressBookMain.getsqlConnection();
 
 		try {
 			if (conn != null) {
@@ -82,5 +112,3 @@ public class userDatatoDB {
 	}
 
 }
-
-
