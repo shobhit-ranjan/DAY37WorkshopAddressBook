@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class  AdressBookUserDay37 {
+public class AdressBookUserDay37 {
 
 	ArrayList<Contactsuser> contactofuser = new ArrayList<>();
 	Scanner sc = new Scanner(System.in);
@@ -153,6 +153,29 @@ public class  AdressBookUserDay37 {
 		}
 	}
 
+	public void searchFromStateOrCity() {
+		addContact();
+		if (contactofuser.isEmpty()) {
+			System.out.println("There no entry of any user");
+			return;
+		}
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter 1 if you want to search by city name else press any number for searching by state");
+		int temp = sc.nextInt();
+		if (temp == 1) {
+			System.out.println("Enter City Name: ");
+			String city = sc.next();
+
+			contactofuser.stream().filter(any -> any.equals(city)).forEach(any -> System.out.print(any.getFirstName()));
+		} else {
+			System.out.println("Enter State Name: ");
+			String State = sc.next();
+			contactofuser.stream().filter(any -> any.equals(State))
+					.forEach(any -> System.out.print(any.getFirstName()));
+		}
+		sc.close();
+	}
+
 	public void DeleteUserEntery() {
 		System.out.println();
 		System.out.println("Enter the name of person you want to delete");
@@ -172,4 +195,5 @@ public class  AdressBookUserDay37 {
 			System.out.println("invalid input");
 		}
 	}
+
 }

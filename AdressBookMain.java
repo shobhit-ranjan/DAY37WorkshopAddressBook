@@ -11,6 +11,7 @@ public class AdressBookMain  {
 		// userDatatoDB.insertContact();
 		// userDatatoDB.updateContactNameOfAdressbook();
 		Entery.addContact();
+                                         Entery.searchFromStateOrCity();
 
 		System.out.println("you to make any changes in enter type yes or no");
 		Scanner sc = new Scanner(System.in);
