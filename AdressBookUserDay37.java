@@ -1,199 +1,179 @@
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
-public class AdressBookUserDay37 {
+public class userDatatoDB {
 
-	ArrayList<Contactsuser> contactofuser = new ArrayList<>();
-	Scanner sc = new Scanner(System.in);
-	Contactsuser userData;
-	int noOfEntery;
-	String userFirstName, userLastName, address, city, state, mailId;
-	long pinCode;
-	long phoneNumber;
-
-	void addContact() {
-		noOfEntery = sc.nextInt();
-		for (int i = 0; i < noOfEntery; i++) {
-
-			if (contactofuser != null) {
-				// STREAM
-				// looking if there is some of same name
-				if (contactofuser.stream().anyMatch(n -> n.getFirstName().equals(userFirstName))) {
-					System.err.println("Person is there try with other name !");
-					return;
+	public static void insertContact() {
+		System.out.println("Inserting a new contact to adressbook table");
+		Connection conn = AdressBookMain.getsqlConnection();
+		if (conn != null) {
+			String insertEmp = "INSERT INTO addressbookday37 (firstName,lastName,address,city,state,zip,phoneNumber,email) values(?,?,?,?,?,?,?,?)";
+			try {
+				PreparedStatement preparedStatement = conn.prepareStatement(insertEmp);
+				preparedStatement.setString(1, "QWE");
+				preparedStatement.setString(2, "OPI");
+				preparedStatement.setString(3, "A 001");
+				preparedStatement.setString(4, "Nodia");
+				preparedStatement.setString(5, "UP");
+				preparedStatement.setInt(6, 211015);
+				preparedStatement.setString(7, "8934788982");
+				preparedStatement.setString(8, "qwe@gmail.com");
+				int rowUpdated = preparedStatement.executeUpdate();
+				if (rowUpdated > 0) {
+					System.out.println("Data is Updated");
 				}
-			}
+			} catch (SQLException e) {
 
-			System.out.println("Your First Name ");
-			userFirstName = sc.next();
-			System.out.println("Your Last Name");
-			userLastName = sc.next();
-			System.out.println("Your Address");
-			address = sc.next();
-			System.out.println("Your City");
-			city = sc.next();
-			System.out.println("Your State");
-			state = sc.next();
-			System.out.println("Enter your Mailid");
-			mailId = sc.next();
-			System.out.println("Enter Your PinCode");
-			pinCode = sc.nextInt();
-			System.out.println("Enter PhoneNumber");
-			phoneNumber = sc.nextLong();
-			contactofuser.add(
-					new Contactsuser(userFirstName, userLastName, address, city, state, pinCode, phoneNumber, mailId));
-		}
-
-		for (int i = 0; i < noOfEntery; i++) {
-			userData = contactofuser.get(i);
-			System.out.println(Contactsuser.userFirstName + " " + userData.userLastName + " " + userData.address + " "
-					+ userData.city + " " + userData.state + " " + userData.mailId + " " + userData.pinCode + " "
-					+ userData.phoneNum);
-		}
-
-	}
-
-	void editContact() {
-		userFirstName = sc.next();
-		int counter = 0;
-		for (int i = 0; i < contactofuser.size(); i++) {
-			userData = contactofuser.get(i);
-			if (userFirstName.equals(Contactsuser.userFirstName)) {
-				System.out.println();
-				System.out.println("Do u want to edit entire contact details? yes or no");
-				String ch = sc.next();
-				if (ch.equals("yes")) {
-					System.out.println("Enter your new address:");
-					address = sc.next();
-					System.out.println("Enter your new city:");
-					city = sc.next();
-					System.out.println("Enter your new state:");
-					state = sc.next();
-					System.out.println("Enter your new email:");
-					mailId = sc.next();
-					System.out.println("Enter your new zip:");
-					pinCode = sc.nextInt();
-					System.out.println("Enter your new phn number:");
-					phoneNumber = sc.nextLong();
-					contactofuser.set(i, new Contactsuser(userFirstName, userLastName, address, city, state, pinCode,
-							phoneNumber, mailId));
-					counter = 1;
-				} else {
-					System.out.println();
-					System.out.println(
-							"Enter your choice to edit particular details.:1.firstname 2.lastname 3.address 4.city 5.state 6.email 7.zip 8.phn number ");
-					int choice = sc.nextInt();
-					switch (choice) {
-					case 1:
-						System.out.println("Enter your new first name:");
-						userFirstName = sc.next();
-						contactofuser.set(i, new Contactsuser(userFirstName, userLastName, address, city, state,
-								pinCode, phoneNumber, mailId));
-						break;
-					case 2:
-						System.out.println("Enter your new last name:");
-						userLastName = sc.next();
-						contactofuser.set(i, new Contactsuser(userFirstName, userLastName, address, city, state,
-								pinCode, phoneNumber, mailId));
-						break;
-					case 3:
-						System.out.println("Enter your new address:");
-						address = sc.next();
-						contactofuser.set(i, new Contactsuser(userFirstName, userLastName, address, city, state,
-								pinCode, phoneNumber, mailId));
-						break;
-					case 4:
-						System.out.println("Enter your new city:");
-						city = sc.next();
-						contactofuser.set(i, new Contactsuser(userFirstName, userLastName, address, city, state,
-								pinCode, phoneNumber, mailId));
-						break;
-					case 5:
-						System.out.println("Enter your new state:");
-						state = sc.next();
-						contactofuser.set(i, new Contactsuser(userFirstName, userLastName, address, city, state,
-								pinCode, phoneNumber, mailId));
-						break;
-					case 6:
-						System.out.println("Enter your new email:");
-						mailId = sc.next();
-						contactofuser.set(i, new Contactsuser(userFirstName, userLastName, address, city, state,
-								pinCode, phoneNumber, mailId));
-						break;
-					case 7:
-						System.out.println("Enter your new zip");
-						pinCode = sc.nextInt();
-						contactofuser.set(i, new Contactsuser(userFirstName, userLastName, address, city, state,
-								pinCode, phoneNumber, mailId));
-						break;
-					case 8:
-						System.out.println("Enter your new phn number");
-						phoneNumber = sc.nextLong();
-						contactofuser.set(i, new Contactsuser(userFirstName, userLastName, address, city, state,
-								pinCode, phoneNumber, mailId));
-						break;
+				e.printStackTrace();
+			} finally {
+				if (conn != null) {
+					try {
+						conn.close();
+					} catch (SQLException sqlException) {
+						System.out.println(sqlException.getMessage());
 
 					}
-					counter = 1;
 				}
-
-				System.out.println("After new entery");
-
-				for (i = 0; i < noOfEntery; i++) {
-					userData = contactofuser.get(i);
-					System.out.println(userData.userFirstName + " " + userData.userLastName + " " + userData.address
-							+ " " + userData.city + " " + userData.state + " " + userData.mailId + " "
-							+ userData.pinCode + " " + userData.phoneNum);
-				}
-				if (counter == 0)
-					System.out.println("you have not enterd the correct name");
-
-			}
-
-		}
-	}
-
-	public void searchFromStateOrCity() {
-		addContact();
-		if (contactofuser.isEmpty()) {
-			System.out.println("There no entry of any user");
-			return;
-		}
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Enter 1 if you want to search by city name else press any number for searching by state");
-		int temp = sc.nextInt();
-		if (temp == 1) {
-			System.out.println("Enter City Name: ");
-			String city = sc.next();
-
-			contactofuser.stream().filter(any -> any.equals(city)).forEach(any -> System.out.print(any.getFirstName()));
-		} else {
-			System.out.println("Enter State Name: ");
-			String State = sc.next();
-			contactofuser.stream().filter(any -> any.equals(State))
-					.forEach(any -> System.out.print(any.getFirstName()));
-		}
-		sc.close();
-	}
-
-	public void DeleteUserEntery() {
-		System.out.println();
-		System.out.println("Enter the name of person you want to delete");
-		userFirstName = sc.next();
-		int counter = 0;
-		for (int i = 0; i < contactofuser.size(); i++) {
-			userData = contactofuser.get(i);
-			if (userFirstName.equals(Contactsuser.userFirstName)) {
-				contactofuser.remove(userData);
-				counter = 1;
-				System.out.println();
-				System.out.println("yes its deleted");
 			}
 		}
-		if (counter == 0) {
 
-			System.out.println("invalid input");
+	}
+
+	public static void updateContactNameOfAdressbook() {
+		System.out.println("Updating address of ABD ");
+		Connection conn = AdressBookMain.getsqlConnection();
+		if (conn != null) {
+			String updateEmpPayroll = "UPDATE addressbookday37 SET address = ? WHERE address ='A 401'";
+			try {
+				PreparedStatement preparedStatement = conn.prepareStatement(updateEmpPayroll);
+				preparedStatement.setString(1, "ZZZZ");
+				int rowUpdated = preparedStatement.executeUpdate();
+				if (rowUpdated > 0) {
+					System.out.println("Data is Updated");
+				}
+			} catch (SQLException e) {
+
+				e.printStackTrace();
+			} finally {
+				if (conn != null) {
+					try {
+						conn.close();
+					} catch (SQLException sqlException) {
+						System.out.println(sqlException.getMessage());
+
+					}
+				}
+			}
 		}
+
+	}
+
+	public static void showContactsBetweenGivenDates() {
+		System.out.println("Displaying information from paticular id");
+		Connection conn = AdressBookMain.getsqlConnection();
+
+		try {
+			if (conn != null) {
+				String readEmpPayroll = "SELECT firstName FROM addressbookday37 WHERE address between 'A 201' and 'A 601'";
+
+				Statement statement = conn.createStatement();
+				ResultSet resultSet = statement.executeQuery(readEmpPayroll);
+				while (resultSet.next()) {
+
+					String name = resultSet.getString(1);
+
+					String row = String.format("User record: \n Name: %s", name);
+					System.out.println(row);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException sqlException) {
+					System.out.println(sqlException.getMessage());
+
+				}
+			}
+		}
+
+	}
+
+	public static void ContactsByCity() {
+		System.out.println("Getting the data by city");
+		Connection conn = AdressBookMain.getsqlConnection();
+
+		try {
+			if (conn != null) {
+				String readEmpPayroll = "SELECT count(city) FROM addressbookday37 WHERE state = 'UP'";
+				Statement statement = conn.createStatement();
+				ResultSet resultSet = statement.executeQuery(readEmpPayroll);
+				while (resultSet.next()) {
+
+					int countContacts = resultSet.getInt(1);
+
+					String row = String.format("User record: \n Number of Contacts: %d", countContacts);
+					System.out.println(row);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException sqlException) {
+					System.out.println(sqlException.getMessage());
+
+				}
+			}
+		}
+
+	}
+
+	public static void readAdressbook() {
+		System.out.println("Displaying all data of adressBook table");
+		Connection conn = AdressBookMain.getsqlConnection();
+
+		try {
+			if (conn != null) {
+				String readEmpPayroll = "SELECT * FROM addressbookday37";
+
+				Statement statement = conn.createStatement();
+				ResultSet resultSet = statement.executeQuery(readEmpPayroll);
+				while (resultSet.next()) {
+					String firstName = resultSet.getString(1);
+					String lastName = resultSet.getString(2);
+					String adress = resultSet.getString(3);
+					String city = resultSet.getString(4);
+					String state = resultSet.getString(5);
+					Integer zip = resultSet.getInt(6);
+					String phoneNumber = resultSet.getString(7);
+					String email = resultSet.getString(8);
+					String row = String.format(
+							"User record:\n FirstName: %s,\n LastName: %s, \n Address: %s,  \n City: %s,\n State: %s , \n Zip: %d, \n PhoneNumber: %s, \n email:%s",
+							firstName, lastName, adress, city, state, zip, phoneNumber, email);
+					System.out.println(row);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException sqlException) {
+					System.out.println(sqlException.getMessage());
+
+				}
+			}
+		}
+
 	}
 
 }
