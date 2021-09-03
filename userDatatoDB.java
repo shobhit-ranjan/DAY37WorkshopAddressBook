@@ -70,6 +70,39 @@ public class userDatatoDB {
 		}
 
 	}
+	public static void showContactsBetweenGivenDates() {
+		System.out.println("Displaying information from paticular id");
+		Connection conn = AdressBookMain.getsqlConnection();
+
+		try {
+			if (conn != null) {
+				String readEmpPayroll = "SELECT firstName FROM addressbookday37 WHERE address between 'A 201' and 'A 601'";
+
+				Statement statement = conn.createStatement();
+				ResultSet resultSet = statement.executeQuery(readEmpPayroll);
+				while (resultSet.next()) {
+
+					String name = resultSet.getString(1);
+
+					String row = String.format("User record: \n Name: %s", name);
+					System.out.println(row);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException sqlException) {
+					System.out.println(sqlException.getMessage());
+
+				}
+			}
+		}
+
+	}
+
 
 	public static void readAdressbook() {
 		System.out.println("Displaying all data of adressBook table");

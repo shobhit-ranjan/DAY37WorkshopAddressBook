@@ -7,8 +7,11 @@ public class AdressBookMain  {
 
 	public static void main(String[] args) {
 		AdressBookUserDay37 Entery = new AdressBookUserDay37();
+		userDatatoDB.insertContact();
 		userDatatoDB.updateContactNameOfAdressbook();
 		userDatatoDB.readAdressbook();
+		userDatatoDB.showContactsBetweenGivenDates();
+		userDatatoDB.updateContactNameOfAdressbook();
 
 		System.out.println("you to make any changes in enter type yes or no");
 		Scanner sc = new Scanner(System.in);
