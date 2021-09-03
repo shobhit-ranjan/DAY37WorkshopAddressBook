@@ -19,8 +19,15 @@ public class AdressBookMain {
 
 			Entery.editContact();
 		}
+		System.out.println("you want to delete the user type yes or no");
+		input = sc.next();
+		if (input.equals("yes")) {
+			Entery.DeleteUserEntery();
+		} else {
+			System.out.println("All done");
+		}
+		sc.close();
 	}
-
 	public static Connection getsqlConnection() {
 		Connection conn = null;
 		String hostUrl = "jdbc:mysql://localhost:3306/address_book_service";
