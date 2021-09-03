@@ -1,16 +1,27 @@
-import java.util.Scanner;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class AdressBookMain {
 
 	public static void main(String[] args) {
 
-		System.out.println("Welcome to Address book program..");
+		 getsqlConnection();
+		 userDatatoDB.insertContact();
+	}
+	public static Connection getsqlConnection() {
+		Connection conn = null;
+		String hostUrl = "jdbc:mysql://localhost:3306/address_book_service";
+		String userName = "root";
+		String password = "mymaths009!@A";
+		try {
+			conn = DriverManager.getConnection(hostUrl, userName, password);
+		} catch (SQLException e) {
+			e.printStackTrace();
 
-		AdressBookUserDay37 Entery = new AdressBookUserDay37();
-		Scanner sc = new Scanner(System.in);
-		System.out.println("How Many entry you want to make this time");
-		Entery.addContact();
-		sc.close();
+		}
+		return conn;
+
 	}
 
 }
