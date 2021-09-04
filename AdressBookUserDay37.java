@@ -206,7 +206,7 @@ public class AdressBookUserDay37 {
 
 	}
 	public static void countContactsByCity() {
-		System.out.println("Counting the ContactNames by city or state================");
+		System.out.println("Counting the ContactNames by city or state");
 		int counter = 0;
 		for (Contactsuser i : contactofuser) {
 			if (i.city.contentEquals("Delhi")){

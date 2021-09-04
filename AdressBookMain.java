@@ -6,14 +6,22 @@ import java.util.Scanner;
 public class AdressBookMain  {
 
 	public static void main(String[] args) {
+		
+	public static void main(String[] args) {
 		AdressBookUserDay37 Entery = new AdressBookUserDay37();
-		userDatatoDB.insertContact();
-		userDatatoDB.updateContactNameOfAdressbook();
-		userDatatoDB.readAdressbook();
-		userDatatoDB.showContactsBetweenGivenDates();
-		userDatatoDB.updateContactNameOfAdressbook();
-                                         userDatatoDB.ContactsByCity();
-	                    Entery.viewUserByCityOrState() ;
+		getsqlConnection();
+		//userDatatoDB.insertContact();
+		//userDatatoDB.updateContactNameOfAdressbook();
+		//userDatatoDB.readAdressbook();
+		//userDatatoDB.showContactsBetweenGivenDates();
+		//userDatatoDB.updateContactNameOfAdressbook();
+		 Entery.addContact();
+		// Entery.searchFromStateOrCity();
+		//userDatatoDB.ContactsByCity();
+		//Entery.viewUserByCityOrState() ;
+		Entery.writeIOContact();
+		Entery.readIOContact();
+
 
 		System.out.println("you to make any changes in enter type yes or no");
 		Scanner sc = new Scanner(System.in);
