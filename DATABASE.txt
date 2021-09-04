@@ -1,0 +1,44 @@
+mysql> show databases;
++----------------------+
+| Database             |
++----------------------+
+| address_book_service |
+| emp_payroll          |
+| information_schema   |
+| mysql                |
+| payroll_services     |
+| performance_schema   |
+| sakila               |
+| sys                  |
+| world                |
++----------------------+
+9 rows in set (0.01 sec)
+
+mysql> use address_book_service;
+Database changed
+mysql> describe address_book_service;
+ERROR 1146 (42S02): Table 'address_book_service.address_book_service' doesn't exist
+mysql> show tables;
++--------------------------------+
+| Tables_in_address_book_service |
++--------------------------------+
+| addressbookday32               |
+| addressbookday37               |
+| adressbook                     |
++--------------------------------+
+3 rows in set (0.01 sec)
+
+mysql> select * from addressbookday37;
++-----------+----------+---------+------------+-------+--------+-------------+---------------+
+| firstName | lastName | address | city       | state | zip    | phoneNumber | email         |
++-----------+----------+---------+------------+-------+--------+-------------+---------------+
+| Shobhit   | Ranjan   | A 890   | Allahahabd | UP    | 211001 |  8934888299 | sho@gmail.com |
+| ABC       | XYZ      | A 201   | Allahahabd | UP    | 211001 |  8934888288 | abc@gmail.com |
+| ABD       | XYA      | ZZZZ    | kanpur     | UP    | 211009 |  8934888211 | abd@gmail.com |
+| ABE       | XYB      | A 501   | Varanasi   | UP    | 211015 |  8934888212 | abe@gmail.com |
+| ABF       | XYC      | A 601   | Varanasi   | UP    | 211015 |  8934888982 | abf@gmail.com |
+| QWE       | OPI      | A 001   | Nodia      | UP    | 211015 |  8934788982 | qwe@gmail.com |
++-----------+----------+---------+------------+-------+--------+-------------+---------------+
+6 rows in set (0.00 sec)
+
+mysql>
