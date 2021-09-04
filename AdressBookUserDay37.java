@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import com.opencsv.CSVReader;
+import com.opencsv.CSVWriter;
 import java.util.Scanner;
 
 public class AdressBookUserDay37 {
@@ -195,6 +197,7 @@ public class AdressBookUserDay37 {
 			System.out.println("invalid input");
 		}
 	}
+
 	public static void viewUserByCityOrState() {
 		for (Contactsuser i : contactofuser) {
 			if (i.city.contentEquals("Allahabad") || i.state.contentEquals("UP")) {
@@ -205,18 +208,38 @@ public class AdressBookUserDay37 {
 		}
 
 	}
+
 	public static void countContactsByCity() {
-		System.out.println("Counting the ContactNames by city or state");
+		System.out.println("Counting the ContactNames by city or stat");
 		int counter = 0;
 		for (Contactsuser i : contactofuser) {
-			if (i.city.contentEquals("Delhi")){
-				counter=counter+1;
+			if (i.city.contentEquals("Delhi")) {
+				counter = counter + 1;
 			} else {
 				System.out.println("No city in found in our record");
 			}
 		}
-		System.out.println("Total we have " +counter+ " person from the city you want ");
+		System.out.println("Total we have " + counter + " person from the city you want ");
 	}
 
+	public void writeIOContact() {
+		new AddressBookIOServiceFile().writeData(contactofuser);
+
+	}
+
+	public void readIOContact() {
+		new AddressBookIOServiceFile().readData();
+
+	}
+
+	public void writeDataToCSV() {
+		new AddressBookIOServiceFile().writeDataToCSVdata(contactofuser);
+
+	}
+
+	public void readDataFromCSVContact() {
+		new AddressBookIOServiceFile().readDataFromCSVContactdata();
+
+	}
 
 }

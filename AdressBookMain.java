@@ -4,40 +4,25 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class AdressBookMain  {
-
-	public static void main(String[] args) {
 		
 	public static void main(String[] args) {
+			public static void main(String[] args) {
 		AdressBookUserDay37 Entery = new AdressBookUserDay37();
 		getsqlConnection();
-		//userDatatoDB.insertContact();
-		//userDatatoDB.updateContactNameOfAdressbook();
-		//userDatatoDB.readAdressbook();
-		//userDatatoDB.showContactsBetweenGivenDates();
-		//userDatatoDB.updateContactNameOfAdressbook();
-		 Entery.addContact();
+		// userDatatoDB.insertContact();
+		// userDatatoDB.updateContactNameOfAdressbook();
+		// userDatatoDB.readAdressbook();
+		// userDatatoDB.showContactsBetweenGivenDates();
+		// userDatatoDB.updateContactNameOfAdressbook();
+		Entery.addContact();
 		// Entery.searchFromStateOrCity();
-		//userDatatoDB.ContactsByCity();
-		//Entery.viewUserByCityOrState() ;
-		Entery.writeIOContact();
-		Entery.readIOContact();
+		// userDatatoDB.ContactsByCity();
+		// Entery.viewUserByCityOrState() ;
+		// Entery.writeIOContact();
+		// Entery.readIOContact();
+		Entery.writeDataToCSV();
+		Entery.readDataFromCSVContact();
 
-
-		System.out.println("you to make any changes in enter type yes or no");
-		Scanner sc = new Scanner(System.in);
-		String input = sc.next();
-		if (input.equals("yes")) {
-
-			Entery.editContact();
-		}
-		System.out.println("you want to delete the user type yes or no");
-		input = sc.next();
-		if (input.equals("yes")) {
-			Entery.DeleteUserEntery();
-		} else {
-			System.out.println("All done");
-		}
-		sc.close();
 	}
 	public static Connection getsqlConnection() {
 		Connection conn = null;
