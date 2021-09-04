@@ -13,6 +13,7 @@ public class AdressBookMain  {
 		userDatatoDB.showContactsBetweenGivenDates();
 		userDatatoDB.updateContactNameOfAdressbook();
                                          userDatatoDB.ContactsByCity();
+	                    Entery.viewUserByCityOrState() ;
 
 		System.out.println("you to make any changes in enter type yes or no");
 		Scanner sc = new Scanner(System.in);
