@@ -1,6 +1,6 @@
 mysql> show databases;
 +----------------------+
-| Database             |
+ | Database             |
 +----------------------+
 | address_book_service |
 | emp_payroll          |
