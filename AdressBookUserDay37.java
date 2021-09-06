@@ -14,6 +14,7 @@ public class AdressBookUserDay37 {
 	long phoneNumber;
 
 	void addContact() {
+		System.out.println( " How many entries you want to make Today! ");
 		noOfEntery = sc.nextInt();
 		for (int i = 0; i < noOfEntery; i++) {
 
@@ -47,22 +48,53 @@ public class AdressBookUserDay37 {
 		}
 
 		for (int i = 0; i < noOfEntery; i++) {
+			System.out.println("Your Data is ");
 			userData = contactofuser.get(i);
 			System.out.println(Contactsuser.userFirstName + " " + userData.userLastName + " " + userData.address + " "
 					+ userData.city + " " + userData.state + " " + userData.mailId + " " + userData.pinCode + " "
 					+ userData.phoneNum);
 		}
+		int select;
+		System.out.println("1. Edit Contact");
+		System.out.println("2. Delete Contact");
+		System.out.println("3. Search in City or state");
+		System.out.println("4. Count by city");
+		System.out.println("5. Count by State");
+		@SuppressWarnings("resource")
+		Scanner sc = new Scanner(System.in);
+		select = sc.nextInt();
+		switch (select) {
+		case 1:
+			editContact();
+			break;
+		case 2:
+			DeleteUserEntery();
+			break;
+		case 3:
+			searchFromStateOrCity();
+			break;
+		case 4:
+			countContactsByCity();
+			break;
+		case 5:
+			countContactsByCity();
+			break;
+		default:
+			System.out.println(" Wrong Input \n");
+			break;
+			
+		}
 
 	}
 
 	void editContact() {
+		System.out.println("Enter the name of person");
 		userFirstName = sc.next();
 		int counter = 0;
 		for (int i = 0; i < contactofuser.size(); i++) {
 			userData = contactofuser.get(i);
 			if (userFirstName.equals(Contactsuser.userFirstName)) {
-				System.out.println();
-				System.out.println("Do u want to edit entire contact details? yes or no");
+				System.out.println("Do u want to edit entire contact details ? yes or no");
 				String ch = sc.next();
 				if (ch.equals("yes")) {
 					System.out.println("Enter your new address:");
@@ -153,9 +185,10 @@ public class AdressBookUserDay37 {
 			}
 
 		}
+	
 	}
 
-	public void searchFromStateOrCity() {
+	void searchFromStateOrCity() {
 		addContact();
 		if (contactofuser.isEmpty()) {
 			System.out.println("There no entry of any user");
@@ -178,7 +211,7 @@ public class AdressBookUserDay37 {
 		sc.close();
 	}
 
-	public void DeleteUserEntery() {
+	void DeleteUserEntery() {
 		System.out.println();
 		System.out.println("Enter the name of person you want to delete");
 		userFirstName = sc.next();
@@ -198,7 +231,7 @@ public class AdressBookUserDay37 {
 		}
 	}
 
-	public static void viewUserByCityOrState() {
+	static void viewUserByCityOrState() {
 		for (Contactsuser i : contactofuser) {
 			if (i.city.contentEquals("Allahabad") || i.state.contentEquals("UP")) {
 				System.out.println("yes we found you  : " + i.userFirstName);
@@ -209,7 +242,7 @@ public class AdressBookUserDay37 {
 
 	}
 
-	public static void countContactsByCity() {
+	void countContactsByCity() {
 		System.out.println("Counting the ContactNames by city or stat");
 		int counter = 0;
 		for (Contactsuser i : contactofuser) {
